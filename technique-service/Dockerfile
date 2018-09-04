@@ -1,7 +1,7 @@
 FROM node:alpine
 
 LABEL version="v1.0"
-LABEL description="Aikido App Image"
+LABEL description="aikido-technique-service"
 
 COPY server.js .
 COPY ./api ./api
