@@ -1,7 +1,7 @@
 {
-  "name": "aikido-app",
+  "name": "aikido-atemi-service",
   "version": "1.0.0",
-  "description": "An Aikido App",
+  "description": "An Aikido Atemi Service",
   "main": "app.js",
   "scripts": {
     "start": "nodemon server.js",

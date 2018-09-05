@@ -2,6 +2,6 @@
 
 module.exports = function(app) {
   const techniqueController = require('../controllers/techniqueController.js');
-  app.route('/technique')
+  app.route('/')
   .get(techniqueController.get);  
 };

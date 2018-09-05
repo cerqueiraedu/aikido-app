@@ -1,0 +1,10 @@
+dependencies:
+  - name: randori-service
+    version: 1.0.0
+    repository: http://example.com/charts
+  - name: atemi-service
+    version: 1.0.0
+    repository: http://another.example.com/charts
+  - name: technique-service
+    version: 1.0.0
+    repository: http://another.example.com/charts

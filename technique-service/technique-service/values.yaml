@@ -1,0 +1,23 @@
+replicaCount: 3
+
+image:
+  repository: ecerqueira/technique-service
+  tag: "2.0.0"
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: NodePort
+  port: 8081
+
+ingress:  
+  annotations: 
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
+  enabled: true
+  path: /aikido/nage
+  servicePort: 8081
+  hosts:
+    - technique-service.local

@@ -1,7 +1,7 @@
 {
-  "name": "aikido-app",
+  "name": "aikido-randori-service",
   "version": "1.0.0",
-  "description": "An Aikido App",
+  "description": "An Aikido Randori Service",
   "main": "app.js",
   "scripts": {
     "start": "nodemon server.js",

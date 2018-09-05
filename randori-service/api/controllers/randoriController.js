@@ -9,15 +9,14 @@ exports.get = function(req, response) {
 
   var doTechnique = () => { 
     http.get({
-      host: 'localhost', 
-      path: '/technique',
+      host: 'technique-service', 
+      path: '/',
       port: 8081
     }, function(res) {
       res.on('data', function(d) {
         randori += d + "</br>";
       });
       res.on('end', function() {
-        console.log("technique done");
         if (ukeAttacking < ukes)
         {
           ukeAttacking++;
@@ -31,8 +30,8 @@ exports.get = function(req, response) {
   
   var doAtemi = () => { 
       http.get({
-        host: 'localhost', 
-        path: '/atemi',
+        host: 'atemi-service', 
+        path: '/',
         port: 8080
       }, (res) => {
         res.on('data', function(d) {
@@ -45,4 +44,5 @@ exports.get = function(req, response) {
   };
 
   doAtemi();
+  console.log(`randori executed on ${new Date().toLocaleTimeString()}`);
 };

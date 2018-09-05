@@ -2,6 +2,6 @@
 
 module.exports = function(app) {
   const randoriController = require('../controllers/randoriController.js');
-  app.route('/randori/ukes/:ukes')
+  app.route('/:ukes')
   .get(randoriController.get);  
 };

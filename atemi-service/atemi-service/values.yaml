@@ -1,0 +1,23 @@
+replicaCount: 3
+
+image:
+  repository: ecerqueira/atemi-service
+  tag: "2.0.0"
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: NodePort
+  port: 8080
+
+ingress:  
+  annotations: 
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
+  enabled: true
+  path: /aikido/uke
+  servicePort: 8080
+  hosts:
+    - atemi-service.local
