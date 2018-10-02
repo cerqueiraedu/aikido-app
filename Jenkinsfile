@@ -1,32 +1,43 @@
-podTemplate(label: 'jenkins-pod') {
-    node ('jenkins-pod') {
-        def image
-
+pipeline {
+    agent {
+        kubernetes {
+            label 'dynamic-survey-api-builder'
+            yamlFile './PodBuilder.yaml'
+        }
+    }
+    stages {
         stage('Cloning Repository...') { 
-            container('jnlp') {
-                checkout scm
+            steps {
+                container('jnlp') {
+                    checkout scm
+                }
             }
         }
-        container('docker-helm') {
-            stage('Docker Build') {
-                image = docker.build("ecerqueira/atemi-service:3.0.0", "./atemi-service")
-            }
-            stage('Docker Push') {
-                docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                    image.push()
-                    image.push("latest")
-                }  
-            }
-        }
-        stage('Helm Deploying') {
-            container('docker-helm'){
-                sh 'helm init --client-only --skip-refresh'
-                sh 'helm repo add aikido-charts https://cerqueiraedu.github.io/aikido-app-charts/charts'
-                sh 'helm upgrade --install --wait alpha-production-atemi-service aikido-charts/atemi-service'
+        
+        
+        stage('Docker Build') {
+            steps {
+                container('docker-helm') {   
+                   // docker.build("ecerqueira/atemi-service:3.0.0", "./atemi-service")
+                   dockerfile {
+                        filename 'Dockerfile'
+                        label 'ecerqueira/atemi-service:3.0.0'
+                    }
+                }
             }
         }
+
+      /*  stage('Docker Push') {
+            docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                image.push()
+                image.push("latest")
+            }  
+        }*/
+
         stage('Results') {
-            echo 'Success!'
+            steps {
+                echo 'Success!'
+            }
         }
     }
 }
