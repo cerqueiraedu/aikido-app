@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon server.js",
-    "api": ""
+    "api": "",
+    "test": "mocha",
+    "test-jenkins": "mocha --reporter xunit --reporter-options output=test-results.xml"
   },
   "author": "Eduardo Cerqueira",
   "license": "ISC",
@@ -16,6 +18,8 @@
     "npm": "^6.4.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^3.5.3",
     "nodemon": "^1.12.1"
   }
 }
